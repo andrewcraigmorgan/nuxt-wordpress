@@ -1,76 +1,11 @@
-# Nuxt Minimal Starter
+# Nuxt WordPress
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+## Overview
 
-## Setup
+Nuxt WordPress is a playground for how to get a Nuxt front end to integrate with WordPress.
 
-Make sure to install dependencies:
+## Installation
 
-```bash
-# npm
-npm install
+Once Nuxt is installed you need to set a site address for the site you want to grab from for REST API purposes... store this in an .env file in the root of the project.
 
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
-```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
-# nuxt-wordpress
+WP_API_URL=https://www.mysite.com/wp-json/wp/v2
