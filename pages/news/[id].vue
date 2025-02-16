@@ -20,7 +20,7 @@ const route = useRoute();
 const config = useRuntimeConfig();
 
 // Fetch the news post by ID
-const { data: news, error } = await useFetch(`${config.public.wpApiUrl}/news/${route.params.id}`, {
+const { data: news, error } = await useFetch(`${config.public.wpApiUrl}/wp-json/wp/v2/posts/${route.params.id}`, {
     transform: async (news) => {
         if (news && news.featured_media) {
             const { data: mediaData } = await useFetch(`${config.public.wpApiUrl}/media/${news.featured_media}`);
@@ -59,7 +59,7 @@ if (news.value) {
 
 // Handle errors
 if (error.value) {
-    console.error("Error fetching news:", error.value);
+    console.error("Error fetching posts:", error.value);
 }
 </script>
 

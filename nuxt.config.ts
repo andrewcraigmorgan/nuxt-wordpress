@@ -4,7 +4,7 @@ export default defineNuxtConfig({
     devtools: { enabled: true },
     runtimeConfig: {
         public: {
-            wpApiUrl: process.env.WP_API_URL || 'https://www.bluewaterpe.com/wp-json/wp/v2',
+            wpApiUrl: process.env.WP_API_URL,
         },
     },
   })

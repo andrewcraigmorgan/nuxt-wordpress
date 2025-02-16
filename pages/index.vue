@@ -1,6 +1,6 @@
 <template>
     <section>
-        <h1>Bluewater News</h1>
+        <h1>News</h1>
         <div class="news-list">
             <article v-for="news in newsPosts" :key="news.id" class="news-item">
                 <!-- Safely render title -->
@@ -19,7 +19,7 @@
 const config = useRuntimeConfig();
 
 // Fetch the news posts and handle null or invalid data
-const { data: newsPostsData, error } = await useFetch(`${config.public.wpApiUrl}/news`);
+const { data: newsPostsData, error } = await useFetch(`${config.public.wpApiUrl}/wp-json/wp/v2/posts`);
 
 const newsPosts = ref([]);
 
@@ -28,7 +28,7 @@ if (newsPostsData.value && Array.isArray(newsPostsData.value)) {
     newsPosts.value = await Promise.all(
         newsPostsData.value.map(async (news) => {
             if (news.featured_media) {
-                const { data: mediaData } = await useFetch(`${config.public.wpApiUrl}/media/${news.featured_media}`);
+                const { data: mediaData } = await useFetch(`${config.public.wpApiUrl}/wp-json/wp/v2/media/${news.featured_media}`);
                 news.featured_media_url = mediaData.value?.source_url || null;
             } else {
                 news.featured_media_url = null;
