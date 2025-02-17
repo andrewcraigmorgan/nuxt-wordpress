@@ -22,7 +22,6 @@ const { data: newsList, error } = await useFetch(`${config.public.wpApiUrl}/wp-j
 const news = newsList.value?.[0] || null; // WordPress returns an array, so take the first item
 
 if (news) {
-    // Fetch featured media if available
     if (news.featured_media) {
         const { data: mediaData } = await useFetch(`${config.public.wpApiUrl}/wp-json/wp/v2/media/${news.featured_media}`);
         news.featured_media_url = mediaData.value?.source_url || null;
