@@ -3,13 +3,10 @@
         <h1>News</h1>
         <div class="news-list">
             <article v-for="news in newsPosts" :key="news.id" class="news-item">
-                <!-- Safely render title -->
                 <h2 v-html="news.title?.rendered || 'Untitled News'"></h2>
-                <!-- Safely render image -->
                 <img :src="news.featured_media_url" alt="News Image" v-if="news.featured_media_url" />
-                <!-- Safely render excerpt -->
-                <p v-html="news.excerpt?.rendered || 'No excerpt available.'"></p>
-                <NuxtLink :to="`/news/${news.id}`">Read More</NuxtLink>
+                <div v-html="news.excerpt?.rendered || 'No excerpt available.'"></div>
+                <NuxtLink :to="`/news/${news.slug}`">Read More</NuxtLink>
             </article>
         </div>
     </section>
@@ -17,13 +14,12 @@
 
 <script setup>
 const config = useRuntimeConfig();
+import { ref } from 'vue'
 
-// Fetch the news posts and handle null or invalid data
 const { data: newsPostsData, error } = await useFetch(`${config.public.wpApiUrl}/wp-json/wp/v2/posts`);
 
 const newsPosts = ref([]);
 
-// Process news data safely
 if (newsPostsData.value && Array.isArray(newsPostsData.value)) {
     newsPosts.value = await Promise.all(
         newsPostsData.value.map(async (news) => {
